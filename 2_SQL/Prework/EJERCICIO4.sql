@@ -3,30 +3,30 @@
 2. Inserta al menos tres registros en la tabla "Pedidos" que relacionen usuarios con productos.*/
 
 
-CREATE TABLE usuarios
+CREATE TABLE "Usuarios"
 (
-    Id SERIAL PRIMARY KEY,
-    nombre VARCHAR (255) NOT NULL
+    "Id" SERIAL PRIMARY KEY,
+    "nombre" VARCHAR (255) NOT NULL
 );
 
-CREATE TABLE productos 
+CREATE TABLE "Productos" 
 (
-        Id SERIAL PRIMARY KEY,
-        nombre VARCHAR (255) NOT NULL,
-        precio INT NOT NULL       
+        "Id" SERIAL PRIMARY KEY,
+        "nombre" VARCHAR (255) NOT NULL,
+        "precio" INT NOT NULL       
 );
 
 
-CREATE TABLE pedidos (
-    Id SERIAL PRIMARY KEY,
-    producto VARCHAR (255),
-    usuarioId INT NOT NULL,
-    productoId INT NOT NULL,
-    CONSTRAINT fk_usuarioId FOREIGN KEY (usuarioID) REFERENCES usuarios (id),
-    CONSTRAINT fk_productoId FOREIGN KEY (productoID) REFERENCES productos (id)
+CREATE TABLE "Pedidos" (
+    "Id" SERIAL PRIMARY KEY,
+    "producto" VARCHAR (255),
+    "id_usuario" INT NOT NULL,
+    "id_producto" INT NOT NULL,
+    CONSTRAINT "fk_usuarioId" FOREIGN KEY ("id_usuario") REFERENCES "Usuarios" ("Id"),
+    CONSTRAINT "fk_productoId" FOREIGN KEY ("id_producto") REFERENCES "Productos" ("Id")
 ); 
 
-INSERT INTO usuarios (nombre)
+INSERT INTO "Usuarios" ("nombre")
 VALUES 
     ('Aroa'),
     ('Pepe'),
@@ -34,7 +34,7 @@ VALUES
     ('Luis'),
     ('Eva');
 
-INSERT INTO productos (nombre,precio)
+INSERT INTO "Productos" ("nombre","precio")
 VALUES 
         ('camaraSony',370),
         ('tablet',780),
@@ -48,7 +48,7 @@ VALUES
         ('raton',60);
 
 
-INSERT INTO pedidos (producto,usuarioId,productoId)
+INSERT INTO "Pedidos" ("producto","id_usuario","id_producto")
 VALUES 
         ('camaraSony',1,1),
         ('tablet',2,2),
@@ -62,112 +62,114 @@ VALUES
 
 --3. Realiza una consulta que muestre los nombres de los usuarios y los nombres de los productos que han comprado, incluidos aquellos que no han realizado ningún pedido (utiliza LEFT JOIN y COALESCE).
 
-SELECT u.nombre AS "cliente", 
-        COALESCE (pr.nombre,'Sin compras') AS "productos",
-        COALESCE(COUNT (p.productoId),0) AS "total_pedidos"
-FROM usuarios AS u
-LEFT JOIN pedidos AS p ON u.Id = p.usuarioId
-LEFT JOIN productos AS pr ON pr.Id = p.productoId
-GROUP BY u.nombre,pr.nombre
-ORDER BY u.nombre;
-
+SELECT u."nombre" AS "cliente", 
+        COALESCE (pr."nombre",'Sin compras') AS "Productos",
+        COALESCE(COUNT (p."id_producto"),0) AS "total_pedidos"
+FROM "Usuarios" AS u
+LEFT JOIN "Pedidos" AS p ON u."Id" = p."id_usuario"
+LEFT JOIN "Productos" AS pr ON pr."Id" = p."id_producto"
+GROUP BY u."nombre",pr."nombre"
+ORDER BY u."nombre";
 --4. Realiza una consulta que muestre los nombres de los usuarios que han realizado un pedido, pero también los que no han realizado ningún pedido (utiliza LEFT JOIN).
 
-SELECT u.nombre AS "cliente", 
-        COALESCE(COUNT (p.productoId),0) AS "total_pedidos"
-FROM usuarios AS u
-LEFT JOIN pedidos AS p ON u.Id = p.usuarioId
-GROUP BY u.nombre
-ORDER BY u.nombre;
+
+SELECT u."nombre" AS "cliente", 
+        COALESCE(COUNT (p."id_producto"),0) AS "total_pedidos"
+FROM "Usuarios" AS u
+LEFT JOIN "Pedidos" AS p ON u."Id" = p."id_usuario"
+GROUP BY u."nombre"
+ORDER BY u."nombre";
+
 
 --5. Agrega una nueva columna llamada "cantidad" a la tabla "Pedidos" y actualiza los registros existentes con un valor (utiliza ALTER TABLE y UPDATE)*/
 
-ALTER TABLE pedidos
+ALTER TABLE "Pedidos"
 ADD COLUMN "cantidad" INT;
 
-UPDATE pedidos 
+UPDATE "Pedidos" 
 SET "cantidad" = 2
-WHERE Id = 1;
+WHERE "Id" = 1;
 
-UPDATE pedidos 
+UPDATE "Pedidos" 
 SET "cantidad" = 3
-WHERE Id IN (2,4);
+WHERE "Id" IN (2,4);
 
-UPDATE pedidos 
+UPDATE "Pedidos" 
 SET "cantidad" = 1
-WHERE Id = 3;
+WHERE "Id" = 3;
 
-UPDATE pedidos 
+UPDATE "Pedidos" 
 SET "cantidad" = 1
-WHERE Id = 5;
+WHERE "Id" = 5;
 
-UPDATE pedidos 
+UPDATE "Pedidos" 
 SET "cantidad" = 1
-WHERE Id IN (6,7,8);
+WHERE "Id" IN (6,7,8);
 
-------------------------------------------------
+-------------------CONSULTAS EXTRAS-----------------------------
 
 ----consulta que muestra todos los clientes hayan comprado o NO,junto al producto comprado y cantidad comprada
 
-SELECT u.nombre AS "cliente", 
-        COALESCE (pr.nombre,'Sin compras') AS "productos",
-        COALESCE (SUM(p.cantidad),0) AS "cantidad_comprada"
-FROM usuarios AS u
-LEFT JOIN pedidos AS p ON u.Id = p.usuarioId
-LEFT JOIN productos AS pr ON p.productoId = pr.Id 
-GROUP BY u.Id, u.nombre,pr.nombre
-ORDER BY u.nombre;
+SELECT u."nombre" AS "cliente", 
+        COALESCE (pr."nombre",'Sin compras') AS "Productos",
+        COALESCE (SUM(p."cantidad"),0) AS "cantidad_comprada"
+FROM "Usuarios" AS u
+LEFT JOIN "Pedidos" AS p ON u."Id" = p."id_usuario"
+LEFT JOIN "Productos" AS pr ON p."id_producto" = pr."Id" 
+GROUP BY u."Id", u."nombre",pr."nombre"
+ORDER BY u."nombre";
 
 
 -----consulta mostrar el total gastado por cliente-----------
+SELECT u."nombre" AS "cliente", 
+       COALESCE(SUM (p."cantidad" * pr."precio"), 0) AS "total_gastado"
+FROM "Usuarios" u
+LEFT JOIN "Pedidos" AS p ON u."Id" = p."id_usuario"
+LEFT JOIN "Productos" AS pr ON p."id_producto" = pr."Id"
+GROUP BY u."Id", u."nombre"
+ORDER BY "total_gastado" DESC;
 
-SELECT u.nombre AS cliente, 
-       COALESCE(SUM(p.cantidad * pr.precio), 0) AS total_gastado
-FROM usuarios u
-LEFT JOIN pedidos AS p ON u.id = p.usuarioid
-LEFT JOIN productos AS pr ON p.productoid = pr.id
-GROUP BY u.id, u.nombre
-ORDER BY total_gastado DESC;
+-------------------CONSULTAS AVANZADAS-----------------------------
 
----CONSULTAS AVANZADAS---
------USO del HAVING--Mostrar solo los clientes que han gastado más de 1000 en total---
-SELECT u.nombre AS cliente, 
-       SUM(p.cantidad * pr.precio) AS total_gastado
-FROM usuarios u
-JOIN pedidos p ON u.id = p.usuarioid
-JOIN productos pr ON p.productoid = pr.id
-GROUP BY u.id, u.nombre
-HAVING SUM(p.cantidad * pr.precio) > 1000  -- Muestra solo clientes con más de 1000 de gasto
-ORDER BY total_gastado DESC;
+-----USO del HAVING--Mostrar solo los clientes que han gastado más de 1600 en total---
+SELECT u."nombre" AS "cliente", 
+       SUM(p."cantidad" * pr."precio") AS "total_gastado"
+FROM "Usuarios" u
+JOIN "Pedidos" p ON u."Id" = p."id_usuario"
+JOIN "Productos" pr ON p."id_producto" = pr."Id"
+GROUP BY u."Id", u."nombre"
+HAVING SUM(p."cantidad" * pr."precio") > 1600   -- Muestra solo clientes con más de 1000 de gasto
+ORDER BY "total_gastado" DESC;
 
 ----USO DEL WHERE--Obtener los clientes que han comprado "tablet", mostrando la cantidad comprada y el total gastado-----
-SELECT u.nombre AS cliente, 
-       pr.nombre AS producto, 
-       p.cantidad, 
-       (p.cantidad * pr.precio) AS total_gastado
-FROM usuarios u
-JOIN pedidos p ON u.id = p.usuarioid
-JOIN productos pr ON p.productoid = pr.id
-WHERE pr.nombre = 'tablet'  -- Filtrar pedido--
-ORDER BY total_gastado DESC;
+SELECT u."nombre" AS "cliente", 
+       pr."nombre" AS "producto", 
+       p."cantidad", 
+       (p."cantidad" * pr."precio") AS "total_gastado"
+FROM "Usuarios" u
+JOIN "Pedidos" p ON u."Id" = p."id_usuario"
+JOIN "Productos" pr ON p."id_producto" = pr."Id"
+WHERE pr."nombre" = 'tablet'  -- "Filtrar" "pedido"--
+ORDER BY "total_gastado" DESC;
 
----SUBCONSULTA---
+-------------------SUBCONSULTA----------------------------------
+
 ---Mostrar los clientes que han gastado más que el gasto promedio de todos los clientes.
 
-SELECT u.nombre AS cliente, 
-       SUM(p.cantidad * pr.precio) AS total_gastado
-FROM usuarios u
-JOIN pedidos p ON u.id = p.usuarioid
-JOIN productos pr ON p.productoid = pr.id
-GROUP BY u.id, u.nombre
-HAVING SUM(p.cantidad * pr.precio) > (
-    SELECT AVG(total_gasto) 
+SELECT u."nombre" AS "cliente", 
+       SUM(p."cantidad" * pr."precio") AS "total_gastado"
+FROM "Usuarios" u
+JOIN "Pedidos" p ON u."Id" = p."id_usuario"
+JOIN "Productos" pr ON p."id_producto" = pr."Id"
+GROUP BY u."Id", u."nombre"
+HAVING SUM(p."cantidad" * pr."precio") > (
+    SELECT AVG("total_gasto") 
     FROM (
-        SELECT SUM(p.cantidad * pr.precio) AS total_gasto
-        FROM usuarios u
-        JOIN pedidos p ON u.id = p.usuarioid
-        JOIN productos pr ON p.productoid = pr.id
-        GROUP BY u.id
-    ) AS gasto_promedio
+        SELECT SUM(p."cantidad" * pr."precio") AS "total_gasto"
+        FROM "Usuarios" u
+        JOIN "Pedidos" p ON u."Id" = p."id_usuario"
+        JOIN "Productos" pr ON p."id_producto" = pr."Id"
+        GROUP BY u."Id"
+    ) AS "gasto_promedio"
 )
-ORDER BY total_gastado DESC;
+ORDER BY "total_gastado" DESC;
