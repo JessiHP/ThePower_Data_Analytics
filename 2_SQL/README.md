@@ -1,5 +1,11 @@
 ### `SQL`
 
+## 📂 Organización Carpetas
+│── 📂 2.1_Prework/      | # Carpeta con ejercicios SQL según niveles |
+│── 📂 2.2_Ejercicio_practico/   | # Ejercicio práctico de SQL |
+
+#### `Ejercicios del Prework SQL`
+
 Ejercicios de ThePower para poner en práctica SQL en función de distintos niveles, así como casos prácticos.
 
 En los diferentes archivos .sql se encontrará el enunciado de los ejercicios con sus respectivas soluciones.
