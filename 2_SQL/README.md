@@ -1,8 +1,7 @@
 ### `SQL`
 
 ## 📂 Organización Carpetas
-````bash
-│── 📂 2.1_Prework/      | # Ejercicios del Prework SQL según niveles |
+│── 📂 2.1_Prework/      | # Carpeta con ejercicios del Prework SQL según niveles |
 │── 📂 2.2_Ejercicio_practico/   | # Ejercicio práctico de SQL |
 │── 📂 2.3_Chinook/   | # Ejercicios prácticos con la BBDD Chinook |
 │── 📂 2.2_Shakila/   | # Ejercicios prácticos con la BBDD Shakila |
