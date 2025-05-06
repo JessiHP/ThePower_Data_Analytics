@@ -1,10 +1,13 @@
 ### `SQL`
 
 ## 📂 Organización Carpetas
-│── 📂 2.1_Prework/      | # Carpeta con ejercicios SQL según niveles |
+````bash
+│── 📂 2.1_Prework/      | # Ejercicios del Prework SQL según niveles |
 │── 📂 2.2_Ejercicio_practico/   | # Ejercicio práctico de SQL |
-
-#### `Ejercicios del Prework SQL`
+│── 📂 2.3_Chinook/   | # Ejercicios prácticos con la BBDD Chinook |
+│── 📂 2.2_Shakila/   | # Ejercicios prácticos con la BBDD Shakila |
+````
+#### 2.1 `Ejercicios del Prework SQL`
 
 Ejercicios de ThePower para poner en práctica SQL en función de distintos niveles, así como casos prácticos.
 
@@ -14,7 +17,7 @@ En los diferentes archivos .sql se encontrará el enunciado de los ejercicios co
 - Ejercicio 3     --> Nivel difícil
 - Ejercicio 4 y 5 --> Nivel experto
 
-#### `Ejercicio Práctico SQL`
+#### 2.2 `Ejercicio práctico de SQL`
 
 **Tutorial de diseño y operación sobre una base de datos
 SQL**
@@ -44,3 +47,6 @@ Respecto a las inscripciones, se necesita saber qué alumno se matriculó en que
 4. Se poblará la base de datos inicialmente con dos juegos de valores por tabla, para demostrar su funcionalidad.
 
 5. Se requiere que se adjunten 5 consultas tipo SELECT en las que se pueda demostrar que los datos cumplen con las restricciones anteriores y el esquema. Es decir, que se vean todas las tablas, sus datos y las relaciones entre las mismas.
+
+#### 2.3 `Ejercicios prácticos con la BBDD Chinook`
+#### 2.4 `Ejercicios prácticos con la BBDD Shakila`
