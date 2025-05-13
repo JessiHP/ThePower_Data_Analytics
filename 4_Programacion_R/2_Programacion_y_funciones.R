@@ -10,7 +10,7 @@ saludo()
 #numérico llamado edad y muestre en la consola si la persona es "menor de
 #edad" o "mayor de edad".
   
-calificar_edad <- function(edad) { 
+calificar_edad <- function(edad) {
     if (edad < 18) { 
     print("Menor de edad") 
 }   else { 
@@ -27,7 +27,7 @@ calificar_edad(35)
 tabla_multiplicar <- function(n) { 
   for (i in 1:10) { 
     resultado <- n * i 
-    print(paste(n, "x", i, "=", resultado)) 
+    print(paste(n, "x", i, "=", resultado))
 } 
 } 
 tabla_multiplicar(2) 
