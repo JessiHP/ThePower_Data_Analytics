@@ -1,51 +1,79 @@
-### `SQL`
+# 🗃️ Módulo SQL – Consultas y diseño relacional
 
-## 📂 Organización Carpetas
-│── 📂 2.1_Prework/      | # Carpeta con ejercicios del Prework SQL según niveles |
-│── 📂 2.2_Ejercicio_practico/   | # Ejercicio práctico de SQL |
-│── 📂 2.3_Chinook/   | # Ejercicios prácticos con la BBDD Chinook |
-│── 📂 2.2_Shakila/   | # Ejercicios prácticos con la BBDD Shakila |
+Este directorio contiene los ejercicios del módulo SQL realizados durante el Bootcamp **Data & Analytics de ThePower**. El objetivo es practicar la lógica relacional, creación de esquemas y resolución de problemas con consultas SQL en PostgreSQL.
+
+
+## 📁 Estructura del contenido
 ````
-#### 2.1 `Ejercicios del Prework SQL`
+2_SQL/
+├── 2.1_Prework/
+│ ├── EJERCICIO1.sql
+│ ├── EJERCICIO2.sql
+│ ├── EJERCICIO3.sql
+│ ├── EJERCICIO4.sql
+│ ├── EJERCICIO5.sql
+│ └── Ejercicios.pdf
+│
+├── 2.2_Ejercicio_practico/
+│ ├── EjercicioPracticoSQL.pdf
+│ ├── EjerciciopracticoSQL.sql
+│ └── Esquema_BBDD_casopractico.png
+````
+## 🔍 Descripción de las carpetas
 
-Ejercicios de ThePower para poner en práctica SQL en función de distintos niveles, así como casos prácticos.
+### 📘 `2.1_Prework/`
 
-En los diferentes archivos .sql se encontrará el enunciado de los ejercicios con sus respectivas soluciones.
+Contiene ejercicios prácticos para afianzar:
 
-- Ejercicio 1 y 2 --> Nivel básico
-- Ejercicio 3     --> Nivel difícil
-- Ejercicio 4 y 5 --> Nivel experto
+- Creación de tablas y relaciones (`PRIMARY KEY`, `FOREIGN KEY`)
+- Inserción, actualización y borrado de registros
+- Consultas con `JOIN`, filtros, agrupaciones, funciones agregadas
+- Alteración de tablas y columnas
+- Comprensión de la lógica relacional a través de ejemplos básicos
 
-#### 2.2 `Ejercicio práctico de SQL`
+📄 **Archivo base:** `Ejercicios.pdf` con enunciados estructurados paso a paso.
 
-**Tutorial de diseño y operación sobre una base de datos
-SQL**
 
-En este ejercicio práctico se pretende que el alumno aplique el conocimiento derivado de los microlearnings correspondientes al módulo de Prework de SQL, así como de los ejercicios prácticos. Diseñaremos una base de datos SQL en base
-a unos requisitos específicados por un determinado cliente, el cuál nos facilitará la información que desea almacenar en su nueva base de datos y que datos querría consultar.
 
-**Enunciado Práctico:**
+### 🧩 `2.2_Ejercicio_practico/`
 
-Un cliente del ámbito educacional quiere que se le diseñe un sistema para llevar un control de los alumnos que están matriculados en sus cursos de formación. Al cliente le preocupa poder llevar una buena trazabilidad de sus alumnos en cada lección, así como que los mismos no pierdan el hilo del curso y avancen en las lecciones, con el fin de que mejore el porcentaje de satisfacción de sus alumnos.
+Desarrollo completo de un **modelo de base de datos académica**, simulando la relación entre:
 
-Concretamente, el cliente tiene unas deadlines o hitos para cada alumno respecto a como debería ser su progreso en función del número de semanas que el alumno lleve matriculado.
+- Estudiantes (`alumnos`)
+- Cursos (`cursos`)
+- Inscripciones (`inscripciones`)
+- Participaciones (`participaciones`)
 
-Por ello, el cliente quiere almacenar en su base de datos el nombre y apellidos de los alumnos, así como los cursos en los que están inscritos. Respecto a los cursos, necesita almacenar el nombre del curso, las semanas que dura y la fecha
-en la que comenzó.
 
-Respecto a las inscripciones, se necesita saber qué alumno se matriculó en que curso y en qué fecha comenzó. Por último, el cliente quiere llevar un control de la cantidad de participaciones que sus alumnos realizan tanto a través de los medios comunitarios (foro, github), como en sus clases, así como las fechas en las que los alumnos han intervenido.
 
-**Restricciones:**
+📌 Incluye:
 
-1. El esquema de base de datos resultante debe tener 4 tablas, con identificadores únicos y las referencias entre sí mismas.
+- Creación del esquema
 
-2. La base de datos debe ser modificable y adjuntar consultas que permitan la alteración de las columnas por cada tabla.
+![alt text](image.png)
+- Restricciones y control de datos
+- Poblado inicial con `INSERT`
+- Consultas SQL para validación de relaciones y reglas del modelo
 
-3. La tabla participaciones debe tener un valor de datos acotado, es decir, debe ser un valor de cadena de caracteres dentro de las opciones mencionadas en el enunciado.
+📄 **Archivo base:** `EjercicioPracticoSQL.pdf`
 
-4. Se poblará la base de datos inicialmente con dos juegos de valores por tabla, para demostrar su funcionalidad.
+📷 **Diagrama visual del modelo relacional incluido**
 
-5. Se requiere que se adjunten 5 consultas tipo SELECT en las que se pueda demostrar que los datos cumplen con las restricciones anteriores y el esquema. Es decir, que se vean todas las tablas, sus datos y las relaciones entre las mismas.
 
-#### 2.3 `Ejercicios prácticos con la BBDD Chinook`
-#### 2.4 `Ejercicios prácticos con la BBDD Shakila`
+## 🧠 Habilidades desarrolladas
+
+- Diseño estructurado de bases de datos
+- Lógica SQL aplicada a problemas reales
+- Buenas prácticas con claves primarias y foráneas
+- Consultas con condiciones y múltiples tablas
+- Control y normalización de datos relacionales
+
+
+
+## 🧾 Tecnologías usadas
+
+- PostgreSQL
+- DBeaver como entorno de ejecución
+
+
+
