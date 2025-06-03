@@ -1,6 +1,6 @@
 # 📦 Proyecto: ThePower - Data Analytics
 
-![alt text](image-1.png)
+![alt text](thePower.png)
 
 Este repositorio es una recopilación de ejercicios prácticos desarrollados durante el Bootcamp **Data & Analytics de ThePower Business School**. Abarca los pilares esenciales del análisis de datos: **Python, SQL, Power BI y R**.
 

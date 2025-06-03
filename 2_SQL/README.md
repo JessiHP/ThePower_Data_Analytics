@@ -50,7 +50,7 @@ Desarrollo completo de un **modelo de base de datos académica**, simulando la r
 
 - Creación del esquema
 
-![alt text](image.png)
+![alt text](Esquema_BBDD_casopractico.png)
 - Restricciones y control de datos
 - Poblado inicial con `INSERT`
 - Consultas SQL para validación de relaciones y reglas del modelo
